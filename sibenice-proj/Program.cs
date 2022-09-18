@@ -20,7 +20,7 @@ namespace Sibenice
 
             int delkaSlova= zvoleneSlovo.Length;
 
-            Console.WriteLine("Vítejte ve hře Šibenice! \nJiž na Vás čeká slovo: " );
+            Console.WriteLine("Vítejte ve hře Šibenice!\nJiž na Vás čeká slovo: " );
             
             string odhaleno= new String('*', delkaSlova);
             Console.WriteLine(odhaleno);
