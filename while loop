@@ -9,13 +9,14 @@ namespace Sibenice
         public static void Main(string[] args)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US");
-            string[] slova = new string[2];
+            string[] slova = new string[6];
             slova[0]="zola";
             slova[1]="shakespeare";
-            slova[2]="wolker";
+            slova[2]="nemcova";
             slova[3]="capek";
             slova[4]="macha";
             slova[5]="salinger";
+            
 
             Random random = new Random();
             int zvolenyIndex = random.Next(0, slova.Length);
@@ -26,16 +27,16 @@ namespace Sibenice
 
             Console.WriteLine("Vítejte ve hře Šibenice!\nJiž na Vás čeká slovo: " );
             
-            do
-            {
-                string odhaleno= new String('*', delkaSlova);
-                Console.WriteLine(odhaleno);
-                int zivoty= 6;
-                Console.WriteLine("Nyní máte {0} životů.", zivoty);
+    
+            string odhaleno= new String('*', delkaSlova);
+            Console.WriteLine(odhaleno);
+            int zivoty= 6;
+            Console.WriteLine("Nyní máte {0} životů.", zivoty);
 
-                int pocetSpatnychPokusu= 0;
+            int pocetSpatnychPokusu= 0;
             
-                
+            do
+            {    
                 while (pocetSpatnychPokusu< zivoty && odhaleno.Contains('*')) //&& zvoleneSlovo.Contains(pismeno))
                 {    
                     Console.Write("Zadejte písmeno pro uhodnutí slova:");
@@ -49,8 +50,6 @@ namespace Sibenice
                     {
                         for(int i=0; i<delkaSlova; i++)
                         {
-                            // zelezo sluchatka
-                            // z***z* *********
                             int indexPismene= zvoleneSlovo.IndexOf(pismeno, i, delkaSlova - i ); // -1
                             if (indexPismene == -1)
                             {
