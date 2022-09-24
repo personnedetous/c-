@@ -11,19 +11,19 @@ namespace Sibenice
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-US"); // čtení písmena ch jako c a h 
 
             Console.WriteLine("Vítejte ve hře Šibenice!");
-            while (Hra() == ConsoleKey.Enter); // pro opakování smyčky s dalšími slovy, pokračování hry
+            while (Hra() == ConsoleKey.Enter) ; // pro opakování smyčky s dalšími slovy, pokračování hry
             Console.ResetColor();
         }
 
-        
+
         static ConsoleKey Hra()
         {
             string[] slova = System.IO.File.ReadAllLines(@"slova.txt");
-            
-            ConsoleColor[] colors = (ConsoleColor[]) ConsoleColor.GetValues(typeof(ConsoleColor));
-            Random randomColorPicker= new Random(); // změna barvy písma při každé hře
-            int randomColorIndex= randomColorPicker.Next(0, colors.Length);
-            Console.ForegroundColor= colors[randomColorIndex];
+
+            ConsoleColor[] colors = (ConsoleColor[])ConsoleColor.GetValues(typeof(ConsoleColor));
+            Random randomColorPicker = new Random(); // změna barvy písma při každé hře
+            int randomColorIndex = randomColorPicker.Next(0, colors.Length);
+            Console.ForegroundColor = colors[randomColorIndex];
 
             Random random = new Random();
             int zvolenyIndex = random.Next(0, slova.Length); // vybírání pořadí náhodného slova
@@ -41,12 +41,12 @@ namespace Sibenice
             Console.WriteLine("Nyní máte {0} životů.", zivoty);
 
             int pocetSpatnychPokusu = 0;
-            while (pocetSpatnychPokusu < zivoty && odhaleno.Contains('*')) 
+            while (pocetSpatnychPokusu < zivoty && odhaleno.Contains('*'))
             {
                 Console.Write("Zadejte písmeno pro uhodnutí slova:");
                 ConsoleKey uzivatelZadal = Console.ReadKey().Key; // přečtení zadaného znaku
 
-                string pismeno = uzivatelZadal.ToString().ToLower(); 
+                string pismeno = uzivatelZadal.ToString().ToLower();
 
                 Console.WriteLine("\n Zvolili jste " + pismeno);
 
@@ -59,22 +59,22 @@ namespace Sibenice
                         {
                             break;
                         }
-                        
+
                         Console.WriteLine("Uhodl jsi písmeno: {0} na pozici {1}.", pismeno, indexPismene);
-                        
+
                         StringBuilder sb = new StringBuilder(odhaleno);// stringbuilder sb vytvoří string, kde postaví na místo * uhodnuté písmeno
                         sb[indexPismene] = Convert.ToChar(pismeno);
                         odhaleno = sb.ToString();
-                        Console.WriteLine(odhaleno); 
+                        Console.WriteLine(odhaleno);
                         i = indexPismene;
                     }
 
                 }
                 else
                 {
-                    Console.WriteLine("Toto písmeno ve slově bohužel není."); 
+                    Console.WriteLine("Toto písmeno ve slově bohužel není.");
                     pocetSpatnychPokusu++; // pokud písmeno ve slově není, ubere se život, opakování smyčky while
-                    int zbyvajici = zivoty-pocetSpatnychPokusu;
+                    int zbyvajici = zivoty - pocetSpatnychPokusu;
                     Console.WriteLine("Zbývá vám {0} životů", zbyvajici);
                 }
             }
